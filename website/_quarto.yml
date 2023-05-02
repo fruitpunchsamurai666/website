@@ -2,17 +2,20 @@ project:
   type: website
 
 website:
-  title: "website"
+  title: "My VAA Journey"
   navbar:
     left:
-    - text: "Hands-on Exercise"
-      menu:
-        - text: "Hands-on Exercise 1"
-    - text: "In-class Ex03"
+    - text: "In-class Exercise"
       menu:
         - href: "In-class_ex03/In-class_Ex03.html"
           text: "In-class_Exercise"
-        
+    - text: "Take-home Exercise"
+      menu:
+        - href: "In-class_ex03/In-class_Ex03.html"
+          text: "In-class_Exercise"
+    - text: "Hands-on Exercise"
+      menu:
+        - text: "Hands-on Exercise 1"
         
     right:
       - href: index.qmd
