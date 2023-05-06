@@ -1,0 +1,66 @@
+---
+title: "In-class Exercise 4"
+author: "DENG Zhan (Christina)"
+format: html
+editor: visual
+published: "6 May 2023"
+date-modified: "`r Sys.Date()`"
+execute: 
+  echo: true
+  eval: true
+  warning: false
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+pacman::p_load(plotly, gt, patchwork, ggstatsplot, tidyverse, ggside, readxl, performance, parameters, see, rstatix,patchwork)
+```
+
+You can add options to executable code like this
+
+```{r}
+exam_data <- read_csv("data/Exam_data.csv")
+```
+
+::: {.panel-tabset}
+## The plot
+```{r}
+#| echo: false 
+#| fig-width: 4
+#| fig-height: 4
+qq <- ggplot(exam_data, aes(sample=ENGLISH))+stat_qq()+stat_qq_line()
+
+sw_t <- exam_data %>% 
+  shapiro_test(ENGLISH)%>% 
+  gt()
+
+tmp <- tempfile(fileext='.png')
+gtsave(sw_t,tmp)
+table_png <- png::readPNG(tmp,native=TRUE)
+
+qq+table_png
+```
+## The code chunk
+```{r}
+#| eval: false
+#| fig-width: 4
+#| fig-height: 4
+ggplot(exam_data, aes(sample=ENGLISH))+stat_qq()+stat_qq_line()
+
+sw_t <- exam_data %>% 
+  shapiro_test(ENGLISH)%>% 
+  gt()
+
+```
+:::
+
+::: callout-note
+We can see that the points deviate significantly form the straight diagonal line, this is a clear indication that the set of data is not normally distributed.
+:::

@@ -9,6 +9,8 @@ website:
       menu:
         - href: "In-class_EX/In-class_Ex03.html"
           text: "In-class_Exercise 3"
+        - href: "In-class_EX/In-class_Ex04/In-class_Ex04.html"
+          text: "In-class_Exercise 4"
     - text: "Take-home Exercise"
       menu:
         - href: "Take-home_EX/Take-home_Ex1.html"
