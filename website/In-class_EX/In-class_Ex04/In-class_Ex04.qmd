@@ -11,23 +11,17 @@ execute:
   warning: false
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
+1. load packages
 ```{r}
-pacman::p_load(plotly, gt, patchwork, ggstatsplot, tidyverse, ggside, readxl, performance, parameters, see, rstatix,patchwork)
+pacman::p_load(plotly, gt, patchwork, ggstatsplot, tidyverse, ggside, parameters,rstatix,patchwork)
 ```
 
-You can add options to executable code like this
+2. load dataset
 
 ```{r}
 exam_data <- read_csv("data/Exam_data.csv")
 ```
+3. qq plot
 
 ::: {.panel-tabset}
 ## The plot

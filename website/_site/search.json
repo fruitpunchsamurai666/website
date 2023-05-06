@@ -25,7 +25,7 @@
     "href": "In-class_EX/In-class_Ex04/In-class_Ex04.html",
     "title": "In-class Exercise 4",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "text": "load packages\n\n\npacman::p_load(plotly, gt, patchwork, ggstatsplot, tidyverse, ggside, parameters,rstatix,patchwork)\n\n\nload dataset\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\n\nqq plot\n\n\nThe plotThe code chunk\n\n\n\n\n\n\n\n\n\n\nggplot(exam_data, aes(sample=ENGLISH))+stat_qq()+stat_qq_line()\n\nsw_t <- exam_data %>% \n  shapiro_test(ENGLISH)%>% \n  gt()\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWe can see that the points deviate significantly form the straight diagonal line, this is a clear indication that the set of data is not normally distributed."
   },
   {
     "objectID": "In-class_EX/In-class_Ex04/In-class_Ex04.html#running-code",
@@ -47,5 +47,19 @@
     "title": "Take-home_Ex1",
     "section": "",
     "text": "Take home exercise 1"
+  },
+  {
+    "objectID": "In-class_EX/In-class_Ex04/In-class_Ex04.html#parametric-and-non",
+    "href": "In-class_EX/In-class_Ex04/In-class_Ex04.html#parametric-and-non",
+    "title": "In-class Exercise 4",
+    "section": "parametric and non",
+    "text": "parametric and non"
+  },
+  {
+    "objectID": "In-class_EX/In-class_Ex04/In-class_Ex04.html#the-code-chunk",
+    "href": "In-class_EX/In-class_Ex04/In-class_Ex04.html#the-code-chunk",
+    "title": "In-class Exercise 4",
+    "section": "The code chunk",
+    "text": "The code chunk\n\nggplot(exam_data, aes(sample=ENGLISH))+stat_qq()+stat_qq_line()\n\nsw_t <- exam_data %>% \n  shapiro_test(ENGLISH)%>% \n  gt()\n\n:::\n\n\n\n\n\n\nNote\n\n\n\nWe can see that the points deviate significantly form the straight diagonal line, this is a clear indication that the set of data is not normally distributed."
   }
 ]
