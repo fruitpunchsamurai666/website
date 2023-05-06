@@ -56,5 +56,5 @@ sw_t <- exam_data %>%
 :::
 
 ::: callout-note
-We can see that the points deviate significantly form the straight diagonal line, this is a clear indication that the set of data is not normally distributed.
+We can see that the points deviate significantly from the straight diagonal line, this is a clear indication that the set of data is not normally distributed.
 :::

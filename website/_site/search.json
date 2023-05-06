@@ -25,7 +25,7 @@
     "href": "In-class_EX/In-class_Ex04/In-class_Ex04.html",
     "title": "In-class Exercise 4",
     "section": "",
-    "text": "load packages\n\n\npacman::p_load(plotly, gt, patchwork, ggstatsplot, tidyverse, ggside, parameters,rstatix,patchwork)\n\n\nload dataset\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\n\nqq plot\n\n\nThe plotThe code chunk\n\n\n\n\n\n\n\n\n\n\nggplot(exam_data, aes(sample=ENGLISH))+stat_qq()+stat_qq_line()\n\nsw_t <- exam_data %>% \n  shapiro_test(ENGLISH)%>% \n  gt()\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWe can see that the points deviate significantly form the straight diagonal line, this is a clear indication that the set of data is not normally distributed."
+    "text": "load packages\n\n\npacman::p_load(plotly, gt, patchwork, ggstatsplot, tidyverse, ggside, parameters,rstatix,patchwork)\n\n\nload dataset\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\n\nqq plot\n\n\nThe plotThe code chunk\n\n\n\n\n\n\n\n\n\n\nggplot(exam_data, aes(sample=ENGLISH))+stat_qq()+stat_qq_line()\n\nsw_t <- exam_data %>% \n  shapiro_test(ENGLISH)%>% \n  gt()\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWe can see that the points deviate significantly from the straight diagonal line, this is a clear indication that the set of data is not normally distributed."
   },
   {
     "objectID": "In-class_EX/In-class_Ex04/In-class_Ex04.html#running-code",
