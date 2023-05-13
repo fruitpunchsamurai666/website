@@ -1,15 +1,43 @@
 ---
-title: "In-class_Ex05"
-author: "DEND Zhan"
+title: "In-class Exercise 5"
+author: "DENG Zhan"
 execute: 
   warning: false
 ---
+
+## Part 1 - Explore JSON
+
+1.  load package
+
+```{r}
+pacman::p_load(jsonlite,tidygraph, ggraph, visNetwork, tidyverse) 
+```
+
+2.  read JSON file
+
+```{r}
+MC1 <- jsonlite::fromJSON("D:/MITB/ISSS608/fruitpunchsamurai666/project/MC1/data/MC1.json")
+```
+
+3.  read nodes and edge dataframe from JSON
+
+```{r}
+#read the sub-dataframe from the json file, select and rearrange the columns needed
+MC1_nodes <- as_tibble(MC1$nodes) %>% select(id, type, country)
+MC1_edges <- as_tibble(MC1$links) %>% select(source, target, type, weight, key)
+```
+
+## Part 2 - Network Visualization
+
+1.  load package
 
 ```{r}
 pacman::p_load(igraph, tidygraph, ggraph, 
                visNetwork, lubridate, clock,
                tidyverse, graphlayouts)
 ```
+
+2.  read data
 
 ```{r}
 GAStech_nodes <- read_csv("data/GAStech_email_node.csv")
@@ -20,6 +48,8 @@ GAStech_edges <- read_csv("data/GAStech_email_edge-v2.csv")
 glimpse(GAStech_edges)
 ```
 
+3.  Wrangling time
+
 ```{r}
 GAStech_edges <- GAStech_edges %>%
   mutate(SendDate = dmy(SentDate)) %>%
@@ -27,6 +57,8 @@ GAStech_edges <- GAStech_edges %>%
                         label = TRUE,
                         abbr = FALSE))
 ```
+
+4.  Wrangling attributes by grouping by source-target-day and then removing emails that are cc to senders or only has been sent once.
 
 ```{r}
 GAStech_edges_aggregated <- GAStech_edges %>%
@@ -39,8 +71,75 @@ GAStech_edges_aggregated <- GAStech_edges %>%
   ungroup()
 ```
 
+5.  build tidygraph data model and rearrange the rows by weight in descending order
+
 ```{r}
 GAStech_graph <- tbl_graph(nodes = GAStech_nodes,
                            edges = GAStech_edges_aggregated, 
                            directed = TRUE)
+
+GAStech_graph %>%
+  activate(edges) %>%
+  arrange(desc(Weight))
+```
+
+6.  plot the graph without x and y axis using Fruchterman and Reingold layout
+
+```{r}
+g <- ggraph(GAStech_graph,layout = "fr") + 
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+  geom_node_point(aes(colour = Department, 
+                      size = 3))
+
+g + theme_graph()
+```
+
+7.  working with facet (edge as an example)
+
+    ```{r}
+    set_graph_style()
+
+    g <- ggraph(GAStech_graph, 
+                layout = "nicely") + 
+      geom_edge_link(aes(width=Weight), 
+                     alpha=0.2) +
+      scale_edge_width(range = c(0.1, 5)) +
+      geom_node_point(aes(colour = Department), 
+                      size = 2)
+
+    g + facet_edges(~Weekday) +
+      th_foreground(foreground = "grey80",  
+                    border = TRUE) +
+      theme(legend.position = 'bottom')
+    ```
+
+8.  interactive network graph with visNetwork
+
+    ```{r}
+    GAStech_edges_aggregated <- GAStech_edges %>%
+      left_join(GAStech_nodes, by = c("sourceLabel" = "label")) %>%
+      rename(from = id) %>%
+      left_join(GAStech_nodes, by = c("targetLabel" = "label")) %>%
+      rename(to = id) %>%
+      filter(MainSubject == "Work related") %>%
+      group_by(from, to) %>%
+        summarise(weight = n()) %>%
+      filter(from!=to) %>%
+      filter(weight > 1) %>%
+      ungroup()
+    ```
+
+```{r}
+#shades the nodes by assigning unique colour to each category in the group field.
+GAStech_nodes <- GAStech_nodes %>%
+  rename(group = Department) 
+
+visNetwork(GAStech_nodes,
+           GAStech_edges_aggregated) %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visOptions(highlightNearest = TRUE,
+             nodesIdSelection = TRUE) %>%
+  visLegend() %>%
+  visLayout(randomSeed = 123)
 ```
