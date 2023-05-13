@@ -1,0 +1,18 @@
+---
+title: "mc1"
+---
+
+```{r}
+pacman::p_load(jsonlite,tidygraph, ggraph, visNetwork, tidyverse) 
+```
+
+```{r}
+#read JSON
+MC1 <- jsonlite::fromJSON("D:/MITB/ISSS608/fruitpunchsamurai666/project/MC1/data/MC1.json")
+```
+
+```{r}
+#read the sub-dataframe from the json file before working on it, select and rearrange the columns needed
+MC1_nodes <- as_tibble(MC1$nodes) %>% select(id, type, country)
+MC1_edges <- as_tibble(MC1$links) %>% select(source, target, type, weight, key)
+```

@@ -1,0 +1,4 @@
+pacman::p_load(jsonlite,tidygraph, ggraph, visNetwork, tidyverse) 
+#jsonlite to read the json file
+
+MC1- jsonlite::fromJson("data/MC1.JSON")

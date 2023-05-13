@@ -11,20 +11,23 @@ execute:
   warning: false
 ---
 
-1. load packages
+1.  load packages
+
 ```{r}
 pacman::p_load(plotly, gt, patchwork, ggstatsplot, tidyverse, ggside, parameters,rstatix,patchwork)
 ```
 
-2. load dataset
+2.  load dataset
 
 ```{r}
 exam_data <- read_csv("data/Exam_data.csv")
 ```
-3. qq plot
 
-::: {.panel-tabset}
+3.  qq plot
+
+::: panel-tabset
 ## The plot
+
 ```{r}
 #| echo: false 
 #| fig-width: 4
@@ -41,7 +44,9 @@ table_png <- png::readPNG(tmp,native=TRUE)
 
 qq+table_png
 ```
+
 ## The code chunk
+
 ```{r}
 #| eval: false
 #| fig-width: 4

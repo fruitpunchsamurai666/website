@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -93,6 +156,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../In-class_EX/In-class_Ex04/In-class_Ex04.html">
  <span class="dropdown-text">In-class_Exercise 4</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../In-class_EX/In-class_Ex05/In-class_Ex05.html">
+ <span class="dropdown-text">In-class_Exercise 5</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -138,7 +205,16 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#take-home-exercise-1" id="toc-take-home-exercise-1" class="nav-link active" data-scroll-target="#take-home-exercise-1"><strong>Take home exercise 1</strong></a>
+  <ul class="collapse">
+  <li><a href="#the-task" id="toc-the-task" class="nav-link" data-scroll-target="#the-task"><strong>The Task</strong></a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -166,9 +242,190 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Take home exercise 1</p>
+<section id="take-home-exercise-1" class="level1">
+<h1><strong>Take home exercise 1</strong></h1>
+<section id="the-task" class="level2">
+<h2 class="anchored" data-anchor-id="the-task"><strong>The Task</strong></h2>
+<p>In this take-home exercise, you are required to apply the concepts and methods you had learned in Lesson 1-4 to reveal the demographic and financial characteristics of the city of Engagement byusing appropriate static and interactive statistical graphics methods. This exercise requires a user-friendly and interactive solution that helps city managers and planners to explore the complex data in an engaging way and reveal hidden patterns.</p>
+<p><strong>Load packages and read datasets</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(patchwork, tidyverse, ggstatsplot, ggdist, gganimate, png, gt,plotly, ggstatsplot, ggside, parameters,rstatix,reshape2, gridExtra,ggpmisc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fin_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/FinancialJournal.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>part_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Participants.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Data cleaning and preparation</strong></p>
+<ol type="1">
+<li><p>change data types</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#change participantId to characters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fin_data<span class="sc">$</span>participantId <span class="ot">&lt;-</span> <span class="fu">as.character</span>(fin_data<span class="sc">$</span>participantId)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>part_data<span class="sc">$</span>participantId <span class="ot">&lt;-</span> <span class="fu">as.character</span>(part_data<span class="sc">$</span>participantId)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#change education level to ordinal</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>part_data<span class="sc">$</span>educationLevel <span class="ot">&lt;-</span> <span class="fu">factor</span>(part_data<span class="sc">$</span>educationLevel, <span class="at">ordered=</span><span class="cn">TRUE</span>, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"HighSchoolOrCollege"</span>, <span class="st">"Bachelors"</span>,<span class="st">"Graduate"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>change timestamp</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#save the datetime into date and month 2 formats</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fin_data<span class="sc">$</span>timestamp <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">as.Date</span>(fin_data<span class="sc">$</span>timestamp), <span class="st">"%Y-%m-%d"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fin_data<span class="sc">$</span>Month <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">as.Date</span>(fin_data<span class="sc">$</span>timestamp), <span class="st">"%m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>create a new table by converting financial journal to wide format, with each participant’s total amount for each category returned.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert financial journal to wide format</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>wide_fin <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(fin_data, <span class="at">id_cols =</span> participantId, <span class="at">names_from =</span> category, <span class="at">values_from =</span> amount, <span class="at">values_fn =</span> sum)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fill in NA with 0s (no transaction) in the resultant table</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>wide_fin[<span class="fu">is.na</span>(wide_fin)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>join the wide format financial journal table with the participant table to gain more insights</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(part_data, wide_fin, <span class="at">by =</span> <span class="st">'participantId'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>calculate sum of all categories</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>merged_df<span class="sc">$</span>expenses <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(merged_df[, <span class="fu">c</span>(<span class="st">"Education"</span>, <span class="st">"Food"</span>, <span class="st">"Recreation"</span>,<span class="st">"Shelter"</span>)])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>merged_df<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(merged_df[, <span class="fu">c</span>(<span class="st">"RentAdjustment"</span>,<span class="st">"Wage"</span>)])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>merged_df<span class="sc">$</span>sum <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(merged_df[, <span class="fu">c</span>(<span class="st">"Education"</span>, <span class="st">"Food"</span>, <span class="st">"Recreation"</span>,<span class="st">"RentAdjustment"</span>,<span class="st">"Shelter"</span>,<span class="st">"Wage"</span>)])</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(merged_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  participantId householdSize haveKids age      educationLevel interestGroup
+1             0             3     TRUE  36 HighSchoolOrCollege             H
+2             1             3     TRUE  25 HighSchoolOrCollege             B
+3            10             3     TRUE  48 HighSchoolOrCollege             D
+4           100             2    FALSE  29                 Low             F
+5          1000             1    FALSE  56            Graduate             B
+6          1001             1    FALSE  49            Graduate             C
+    joviality      Wage   Shelter Education RentAdjustment      Food Recreation
+1 0.001626703 109816.59 -7214.852 -494.0699              0 -3141.976 -4384.0672
+2 0.328086500  96374.93 -7214.852 -494.0699              0 -3167.336 -6637.5107
+3 0.557176006  79303.82 -7291.713 -166.5618              0 -4741.141 -3088.0366
+4 0.142686163  46918.02 -7765.816    0.0000              0 -3695.506 -4425.2218
+5 0.983012498  29292.89 -6716.578    0.0000              0 -5987.265 -6466.7517
+6 0.043433461  46233.82 -5920.099    0.0000              0 -3197.202  -211.6989
+    expenses    income      sum
+1 -15234.965 109816.59 94581.62
+2 -17513.769  96374.93 78861.16
+3 -15287.452  79303.82 64016.37
+4 -15886.543  46918.02 31031.47
+5 -19170.594  29292.89 10122.29
+6  -9328.999  46233.82 36904.82</code></pre>
+</div>
+</div></li>
+<li><p>Normality check</p></li>
+</ol>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Joviality qq plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">The code chunk</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="384"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_df, <span class="fu">aes</span>(<span class="at">sample=</span>joviality))<span class="sc">+</span><span class="fu">stat_qq</span>()<span class="sc">+</span><span class="fu">stat_qq_line</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>sw_t <span class="ot">&lt;-</span> merged_df<span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(joviality)<span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Financial summary qq plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">The code chunk</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="384"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_df, <span class="fu">aes</span>(<span class="at">sample=</span>sum))<span class="sc">+</span><span class="fu">stat_qq</span>()<span class="sc">+</span><span class="fu">stat_qq_line</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sw_t <span class="ot">&lt;-</span> merged_df<span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(sum)<span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>We can see that the points from both joviality and financial summary (sum) deviate significantly from the straight diagonal line, this is a clear indication that joviality is not normally distributed.</p>
+<ol start="7" type="1">
+<li><p>outlier removal</p>
+<p>This step is to remove “expenses” and “income” outliers. (to retain more data, I adjusted the 75%/25% quantile (Q3/Q1) to 90% /10% quantile in the outlier formula respectively.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating the upper limit and Interquartile range for "expenses" and "income"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>IQR_income <span class="ot">=</span> <span class="fu">IQR</span>(merged_df<span class="sc">$</span>income)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>IQR_exp <span class="ot">=</span> <span class="fu">IQR</span>(merged_df<span class="sc">$</span>expenses)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>income_upper <span class="ot">=</span> <span class="fu">quantile</span>(merged_df<span class="sc">$</span>income,<span class="at">probs =</span> <span class="fl">0.9</span>)<span class="sc">+</span><span class="fl">1.5</span><span class="sc">*</span>IQR_income</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>exp_lower <span class="ot">=</span> <span class="fu">quantile</span>(merged_df<span class="sc">$</span>expenses,<span class="at">probs =</span> <span class="fl">0.1</span>)<span class="sc">-</span><span class="fl">1.5</span><span class="sc">*</span>IQR_exp</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering out the outliers</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>merged <span class="ot">&lt;-</span>  merged_df <span class="sc">%&gt;%</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>           <span class="fu">filter</span> ((income <span class="sc">&lt;=</span> income_upper) <span class="sc">&amp;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>          (expenses <span class="sc">&gt;=</span> exp_lower))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
+<p><strong>Interesting insights</strong></p>
+<ol type="1">
+<li><p>Does have kids make a big difference in family overrall expenses?</p></li>
+<li><p>Is there any difference in the expense contribution for different age groups?</p></li>
+<li><p>Is there any difference in the expense contribution for different housesize?</p></li>
+<li><p>Does higher education level lead to higher wage? box plot?</p></li>
+<li><p>which factor has the best correlation with joviality?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the y variable</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y_var <span class="ot">&lt;-</span> merged<span class="sc">$</span>joviality</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the x variables</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>x_vars <span class="ot">&lt;-</span> merged[, <span class="fu">c</span>(<span class="st">"Education"</span>, <span class="st">"Food"</span>, <span class="st">"Recreation"</span>,<span class="st">"RentAdjustment"</span>,<span class="st">"Shelter"</span>,<span class="st">"Wage"</span>)]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the data to long format</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="fu">cbind.data.frame</span>(x_vars, y_var), <span class="at">id.vars =</span> <span class="st">"y_var"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> y_var)) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable, <span class="at">scales =</span> <span class="st">"free_x"</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"joviality"</span>) <span class="sc">+</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"joviality correlation scatter plot"</span>) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">"cm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a linear regression model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#model &lt;- lm(y ~ x)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with linear regression line and R-squared value</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># ggplot(data = data.frame(x, y)) +</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a> <span class="co">#  geom_point(aes(x = x, y = y)) +</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a> <span class="co">#  geom_smooth(method = "lm", se = FALSE, aes(x = x, y = y)) +</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a> <span class="co">#  stat_poly_eq(formula = y ~ x, aes(label = paste(stat(eq.label), stat(rr.label), sep = "*\", \"*"))) +</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a> <span class="co">#  labs(x = "X", y = "Y") +</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a> <span class="co">#  theme_bw()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>expense pie chart or proportion of expenses by age grp.</p></li>
+<li><p>animation by time</p></li>
+<li><p>??</p></li>
+</ol>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

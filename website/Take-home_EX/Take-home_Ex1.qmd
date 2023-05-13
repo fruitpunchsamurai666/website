@@ -1,6 +1,213 @@
 ---
 title: "Take-home_Ex1"
 author: "Deng Zhan"
+execute: 
+  warning: false
 ---
 
-Take home exercise 1
+# **Take home exercise 1**
+
+## **The Task**
+
+In this take-home exercise, you are required to apply the concepts and methods you had learned in Lesson 1-4 to reveal the demographic and financial characteristics of the city of Engagement byusing appropriate static and interactive statistical graphics methods. This exercise requires a user-friendly and interactive solution that helps city managers and planners to explore the complex data in an engaging way and reveal hidden patterns.
+
+**Load packages and read datasets**
+
+```{r}
+pacman::p_load(patchwork, tidyverse, ggstatsplot, ggdist, gganimate, png, gt,plotly, ggstatsplot, ggside, parameters,rstatix,reshape2, gridExtra,ggpmisc)
+```
+
+```{r}
+fin_data <- read_csv("data/FinancialJournal.csv")
+part_data <- read_csv("data/Participants.csv")
+```
+
+**Data cleaning and preparation**
+
+1.  change data types
+
+    ```{r}
+    #change participantId to characters
+    fin_data$participantId <- as.character(fin_data$participantId)
+    part_data$participantId <- as.character(part_data$participantId)
+
+    #change education level to ordinal
+    part_data$educationLevel <- factor(part_data$educationLevel, ordered=TRUE, levels=c("Low", "HighSchoolOrCollege", "Bachelors","Graduate"))
+
+    ```
+
+2.  change timestamp
+
+    ```{r}
+    #save the datetime into date and month 2 formats
+    fin_data$timestamp <- format(as.Date(fin_data$timestamp), "%Y-%m-%d")
+    fin_data$Month <- format(as.Date(fin_data$timestamp), "%m")
+    ```
+
+3.  create a new table by converting financial journal to wide format, with each participant's total amount for each category returned.
+
+    ```{r}
+    # Convert financial journal to wide format
+    wide_fin <- pivot_wider(fin_data, id_cols = participantId, names_from = category, values_from = amount, values_fn = sum)
+
+    # fill in NA with 0s (no transaction) in the resultant table
+    wide_fin[is.na(wide_fin)] <- 0
+    ```
+
+4.  join the wide format financial journal table with the participant table to gain more insights
+
+    ```{r}
+    merged_df <- merge(part_data, wide_fin, by = 'participantId')
+    ```
+
+5.  calculate sum of all categories
+
+    ```{r}
+    merged_df$expenses <- rowSums(merged_df[, c("Education", "Food", "Recreation","Shelter")])
+    merged_df$income <- rowSums(merged_df[, c("RentAdjustment","Wage")])
+    merged_df$sum <- rowSums(merged_df[, c("Education", "Food", "Recreation","RentAdjustment","Shelter","Wage")])
+    head(merged_df)
+    ```
+
+6.  Normality check
+
+::: panel-tabset
+## Joviality qq plot
+
+```{r}
+#| echo: false 
+#| fig-width: 4
+#| fig-height: 4
+qq <- ggplot(merged_df, aes(sample=joviality))+stat_qq()+stat_qq_line()
+
+sw_t <- merged_df%>% 
+  shapiro_test(joviality)%>% 
+  gt()
+
+tmp <- tempfile(fileext='.png')
+gtsave(sw_t,tmp)
+table_png <- png::readPNG(tmp,native=TRUE)
+
+qq+table_png
+```
+
+## The code chunk
+
+```{r}
+#| eval: false
+#| fig-width: 4
+#| fig-height: 4
+qq <- ggplot(merged_df, aes(sample=joviality))+stat_qq()+stat_qq_line()
+
+sw_t <- merged_df%>% 
+  shapiro_test(joviality)%>% 
+  gt()
+```
+:::
+
+::: panel-tabset
+## Financial summary qq plot
+
+```{r}
+#| echo: false 
+#| fig-width: 4
+#| fig-height: 4
+qq <- ggplot(merged_df, aes(sample=sum))+stat_qq()+stat_qq_line()
+
+sw_t <- merged_df%>% 
+  shapiro_test(sum)%>% 
+  gt()
+
+tmp <- tempfile(fileext='.png')
+gtsave(sw_t,tmp)
+table_png <- png::readPNG(tmp,native=TRUE)
+
+qq+table_png
+```
+
+## The code chunk
+
+```{r}
+#| eval: false
+#| fig-width: 4
+#| fig-height: 4
+qq <- ggplot(merged_df, aes(sample=sum))+stat_qq()+stat_qq_line()
+
+sw_t <- merged_df%>% 
+  shapiro_test(sum)%>% 
+  gt()
+```
+:::
+
+We can see that the points from both joviality and financial summary (sum) deviate significantly from the straight diagonal line, this is a clear indication that joviality is not normally distributed.
+
+7.  outlier removal
+
+    This step is to remove "expenses" and "income" outliers. (to retain more data, I adjusted the 75%/25% quantile (Q3/Q1) to 90% /10% quantile in the outlier formula respectively.
+
+    ```{r}
+    # Calculating the upper limit and Interquartile range for "expenses" and "income"
+
+    IQR_income = IQR(merged_df$income)
+    IQR_exp = IQR(merged_df$expenses)
+
+    income_upper = quantile(merged_df$income,probs = 0.9)+1.5*IQR_income
+    exp_lower = quantile(merged_df$expenses,probs = 0.1)-1.5*IQR_exp
+
+
+    # Filtering out the outliers
+    merged <-  merged_df %>%
+               filter ((income <= income_upper) &
+              (expenses >= exp_lower))
+    ```
+
+**Interesting insights**
+
+1.  Does have kids make a big difference in family overrall expenses?
+
+2.  Is there any difference in the expense contribution for different age groups?
+
+3.  Is there any difference in the expense contribution for different housesize?
+
+4.  Does higher education level lead to higher wage? box plot?
+
+5.  which factor has the best correlation with joviality?
+
+    ```{r}
+    # Define the y variable
+    y_var <- merged$joviality
+
+    # Define the x variables
+    x_vars <- merged[, c("Education", "Food", "Recreation","RentAdjustment","Shelter","Wage")]
+
+    # Reshape the data to long format
+    df <- reshape2::melt(cbind.data.frame(x_vars, y_var), id.vars = "y_var")
+
+    # Create the plot
+    ggplot(df,aes(x = value, y = y_var)) +
+      geom_point(size = 1) +
+      coord_cartesian(ylim=c(0, 1))+
+      geom_smooth(method = "lm") +
+      facet_wrap(~ variable, scales = "free_x", ncol = 3) +
+      labs(x = NULL, y = "joviality") +
+      ggtitle("joviality correlation scatter plot") +
+      theme(plot.margin = margin(1, 1, 1, 1, "cm"))
+
+    # Fit a linear regression model
+    #model <- lm(y ~ x)
+
+    # Create scatter plot with linear regression line and R-squared value
+     # ggplot(data = data.frame(x, y)) +
+     #  geom_point(aes(x = x, y = y)) +
+     #  geom_smooth(method = "lm", se = FALSE, aes(x = x, y = y)) +
+     #  stat_poly_eq(formula = y ~ x, aes(label = paste(stat(eq.label), stat(rr.label), sep = "*\", \"*"))) +
+     #  labs(x = "X", y = "Y") +
+     #  theme_bw()
+
+    ```
+
+6.  expense pie chart or proportion of expenses by age grp.
+
+7.  animation by time
+
+8.  ??
