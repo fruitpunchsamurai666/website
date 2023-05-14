@@ -1,6 +1,7 @@
 ---
 title: "Take-home Exercise 1"
 author: "DENG Zhan"
+published: "14 May 2023"
 execute: 
   warning: false
 ---
@@ -16,12 +17,12 @@ In this take-home exercise, you are required to apply the concepts and methods y
 ### **1. Load packages and read datasets**
 
 ```{r}
-pacman::p_load(patchwork, tidyverse, ggstatsplot, ggdist, gganimate, png, gt,plotly, ggstatsplot, ggside, parameters,rstatix,reshape2, gridExtra,ggpmisc,ggscatterstats,ggplot2,ungeviz,treemap,ggridges, viridis)
+    pacman::p_load(patchwork, tidyverse, ggstatsplot, ggdist, gganimate, png, gt,plotly, ggstatsplot, ggside, parameters,rstatix,reshape2, gridExtra,ggpmisc,ggscatterstats,ggplot2,ungeviz,treemap,ggridges, viridis)
 ```
 
 ```{r}
-fin_data <- read_csv("data/FinancialJournal.csv")
-part_data <- read_csv("data/Participants.csv")
+    fin_data <- read_csv("data/FinancialJournal.csv")
+    part_data <- read_csv("data/Participants.csv")
 ```
 
 ### **2. Data cleaning and preparation**
@@ -163,6 +164,8 @@ We can see that the points from both joviality and financial balance deviate sig
     ```
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
 
 #income histogram after outlier removal
 mean_income = mean(merged$income)
@@ -220,7 +223,10 @@ From this line plot, we observe:
 2.  Total expenses (absolute value) increases as household size increases, which is expected.
 3.  Householdsize 1 has the most balance (total income - expenses).
 
+
 ```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
 #add a column to store absolute value of total expense
 merged$expenses_abs <- abs(merged$expenses)
 
@@ -263,7 +269,10 @@ From the box plot, observed that:
 2.  Age group "21-30" has the lowest average expense across all categories.
 3.  The participant with the maximum expense (32.6k) is from 31-40 group.
 
+
 ```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
 # create age_groups with labels
 merged$age_groups <- cut(merged$age, 
                   breaks = c(10, 20, 30, 40, 50, 60), 
@@ -301,7 +310,10 @@ To further understand the spending behaviors of each age group, a stacked bar ch
 
 However from the stacked bar chart, there is not much spending behavior difference observed across the five age groups. The biggest proportion is always shelter, followed by recreation, food, and lastly education. The proportion for recreation and food is comparable, while education only contributes a small portion to total expense.
 
+
 ```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
 #calculate avg of each expense category by age group, then change the table to long format
 merged_aggregated <- merged %>%
   group_by(age_groups) %>%
@@ -342,7 +354,10 @@ After visualizing expenses VS age group, I am also interested in the expense pat
 
 In this section, a treemap is used for a quick overall glimpse of expenses across different education levels and interest groups. Graduate and bachelors are having higher expenses than college or lower education level. Interest group B/F has relatively high proportion across all education levels.
 
+
 ```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
 #calculate average expenses for different education level and interest groups
 merged_aggr_tree <- merged %>%
   group_by(educationLevel,interestGroup) %>%
@@ -360,6 +375,7 @@ treemap_area <- treemap (merged_aggr_tree,
         title="expenses by educationLevel and interest group",
         title.legend = "Average Expenses"
         )
+
 ```
 
 ### 5. Wage VS education level by using Hypothetical Outcome Plots
@@ -369,6 +385,8 @@ Hypothetical Outcome Plot (HOP) are used to visualize the uncertainty of wage fo
 From the plot below, we can see that most of the time, bachelors and graduates can earn more than low or high school/college education level.
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
 #Wage VS education level HOP
 hop <- ggplot(data = merged, 
    (aes(x = educationLevel, 
@@ -396,7 +414,10 @@ Scatter plot is used to investigate which category among the 6 has good correlat
 
 There is no good correlation between joviality and education, food or shelter. While recreation shows positive correlation with joviality, the more the participants spend on recreation, the happier they are. Surprisingly wage and joviality are in negative correlation.
 
+
 ```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
 # Define y as joviality
 y_var <- merged$joviality
 
@@ -408,7 +429,7 @@ x_vars <- merged[, c("Education", "Food", "Recreation","RentAdjustment","Shelter
 df <- reshape2::melt(cbind.data.frame(x_vars, y_var), id.vars = "y_var")
 
 # Create the plot
-ggplot(df,aes(x = value, y = y_var)) +
+cor <- ggplot(df,aes(x = value, y = y_var)) +
   geom_point(size = 1) +
   coord_cartesian(ylim=c(0, 1))+
   geom_smooth(method = "lm") +
@@ -417,6 +438,7 @@ ggplot(df,aes(x = value, y = y_var)) +
   ggtitle("joviality correlation scatter plot") +
   theme(plot.margin = margin(1, 1, 1, 1, "cm"))
 
+cor
 ```
 
 ### 7. Recreation expenses over time
@@ -425,9 +447,9 @@ Since recreation shows a relatively good correlation with joviality, I did below
 
 The distribution of recreation expenses are more or less constant from early 2022 to early 2023, and it is slowly shifting right which means people tend to spend more on recreation over time.
 
-
-
-```{r,collapse=TRUE}
+```{r}
+#| code-fold: true
+#| code-summary: "Show Code"
 #filter recreation data and group by category 
 fin_aggr <- fin_data %>%
   mutate(year_mth = as.Date(paste(year_mth,"-01", sep=""))) %>%
@@ -435,9 +457,7 @@ fin_aggr <- fin_data %>%
   filter(category %in% c("Recreation"))%>%
   group_by(category)%>%
  ungroup()
-```
 
-```{r,collapse=TRUE}
 #density ridge plot animation over time
 gg <- ggplot(data = fin_aggr, aes(x = amount, y = category, fill = after_stat(density))) +
   
@@ -458,4 +478,3 @@ gg <- ggplot(data = fin_aggr, aes(x = amount, y = category, fill = after_stat(de
 
 gg
 ```
-

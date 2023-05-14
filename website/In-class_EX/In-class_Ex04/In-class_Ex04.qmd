@@ -27,7 +27,6 @@ exam_data <- read_csv("data/Exam_data.csv")
 
 ::: panel-tabset
 ## The plot
-
 ```{r}
 #| echo: false 
 #| fig-width: 4
@@ -43,8 +42,8 @@ gtsave(sw_t,tmp)
 table_png <- png::readPNG(tmp,native=TRUE)
 
 qq+table_png
-```
 
+```
 ## The code chunk
 
 ```{r}

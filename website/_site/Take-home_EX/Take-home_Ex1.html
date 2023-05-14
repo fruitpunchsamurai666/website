@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="DENG Zhan">
+
+<title>My VAA Journey - Take-home Exercise 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="../site_libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">My VAA Journey</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-class Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercise">    
+        <li>
+    <a class="dropdown-item" href="../In-class_EX/In-class_Ex03.html">
+ <span class="dropdown-text">In-class_Exercise 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../In-class_EX/In-class_Ex04/In-class_Ex04.html">
+ <span class="dropdown-text">In-class_Exercise 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../In-class_EX/In-class_Ex05/In-class_Ex05.html">
+ <span class="dropdown-text">In-class_Exercise 5</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="../Take-home_EX/Take-home_Ex1.html">
+ <span class="dropdown-text">Take-home Exercise 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+        <li>
+    <a class="dropdown-item" href="../Hands-on_EX/Hands-on_Ex1.html">
+ <span class="dropdown-text">Hands-on Exercise 1</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#take-home-exercise-1" id="toc-take-home-exercise-1" class="nav-link active" data-scroll-target="#take-home-exercise-1"><strong>Take home exercise 1</strong></a>
+  <ul class="collapse">
+  <li><a href="#the-task" id="toc-the-task" class="nav-link" data-scroll-target="#the-task"><strong>The Task</strong></a></li>
+  <li><a href="#data-pre-processing" id="toc-data-pre-processing" class="nav-link" data-scroll-target="#data-pre-processing"><strong>Data Pre-processing</strong></a>
+  <ul class="collapse">
+  <li><a href="#load-packages-and-read-datasets" id="toc-load-packages-and-read-datasets" class="nav-link" data-scroll-target="#load-packages-and-read-datasets"><strong>1. Load packages and read datasets</strong></a></li>
+  <li><a href="#data-cleaning-and-preparation" id="toc-data-cleaning-and-preparation" class="nav-link" data-scroll-target="#data-cleaning-and-preparation"><strong>2. Data cleaning and preparation</strong></a></li>
+  </ul></li>
+  <li><a href="#data-visualisation" id="toc-data-visualisation" class="nav-link" data-scroll-target="#data-visualisation"><strong>Data Visualisation</strong></a>
+  <ul class="collapse">
+  <li><a href="#total-income-expenses-and-balance-vs-household-size" id="toc-total-income-expenses-and-balance-vs-household-size" class="nav-link" data-scroll-target="#total-income-expenses-and-balance-vs-household-size">1. Total income, expenses and balance VS household size</a></li>
+  <li><a href="#expenses-by-age-group" id="toc-expenses-by-age-group" class="nav-link" data-scroll-target="#expenses-by-age-group">2. Expenses by age group</a></li>
+  <li><a href="#proportion-of-expenses-by-age-group" id="toc-proportion-of-expenses-by-age-group" class="nav-link" data-scroll-target="#proportion-of-expenses-by-age-group">3. Proportion of expenses by age group</a></li>
+  <li><a href="#expenses-by-education-level-and-interest-group" id="toc-expenses-by-education-level-and-interest-group" class="nav-link" data-scroll-target="#expenses-by-education-level-and-interest-group">4. Expenses by education Level and interest group</a></li>
+  <li><a href="#wage-vs-education-level-by-using-hypothetical-outcome-plots" id="toc-wage-vs-education-level-by-using-hypothetical-outcome-plots" class="nav-link" data-scroll-target="#wage-vs-education-level-by-using-hypothetical-outcome-plots">5. Wage VS education level by using Hypothetical Outcome Plots</a></li>
+  <li><a href="#correlation-with-joviality" id="toc-correlation-with-joviality" class="nav-link" data-scroll-target="#correlation-with-joviality">6. Correlation with joviality</a></li>
+  <li><a href="#recreation-expenses-over-time" id="toc-recreation-expenses-over-time" class="nav-link" data-scroll-target="#recreation-expenses-over-time">7. Recreation expenses over time</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Take-home Exercise 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>DENG Zhan </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="take-home-exercise-1" class="level1">
+<h1><strong>Take home exercise 1</strong></h1>
+<section id="the-task" class="level2">
+<h2 class="anchored" data-anchor-id="the-task"><strong>The Task</strong></h2>
+<p>In this take-home exercise, you are required to apply the concepts and methods you had learned in Lesson 1-4 to reveal the demographic and financial characteristics of the city of Engagement by using appropriate static and interactive statistical graphics methods. This exercise requires a user-friendly and interactive solution that helps city managers and planners to explore the complex data in an engaging way and reveal hidden patterns.</p>
+</section>
+<section id="data-pre-processing" class="level2">
+<h2 class="anchored" data-anchor-id="data-pre-processing"><strong>Data Pre-processing</strong></h2>
+<section id="load-packages-and-read-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="load-packages-and-read-datasets"><strong>1. Load packages and read datasets</strong></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    pacman<span class="sc">::</span><span class="fu">p_load</span>(patchwork, tidyverse, ggstatsplot, ggdist, gganimate, png, gt,plotly, ggstatsplot, ggside, parameters,rstatix,reshape2, gridExtra,ggpmisc,ggscatterstats,ggplot2,ungeviz,treemap,ggridges, viridis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    fin_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/FinancialJournal.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    part_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Participants.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-cleaning-and-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-and-preparation"><strong>2. Data cleaning and preparation</strong></h3>
+<ol type="1">
+<li><p>change data types</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#change participantId to characters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fin_data<span class="sc">$</span>participantId <span class="ot">&lt;-</span> <span class="fu">as.character</span>(fin_data<span class="sc">$</span>participantId)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>part_data<span class="sc">$</span>participantId <span class="ot">&lt;-</span> <span class="fu">as.character</span>(part_data<span class="sc">$</span>participantId)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#change education level to ordinal</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>part_data<span class="sc">$</span>educationLevel <span class="ot">&lt;-</span> <span class="fu">factor</span>(part_data<span class="sc">$</span>educationLevel, <span class="at">ordered=</span><span class="cn">TRUE</span>, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"HighSchoolOrCollege"</span>, <span class="st">"Bachelors"</span>,<span class="st">"Graduate"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>change the format of timestamp</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#save the datetime into date and month 2 formats</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fin_data<span class="sc">$</span>timestamp <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">as.Date</span>(fin_data<span class="sc">$</span>timestamp), <span class="st">"%Y-%m-%d"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fin_data<span class="sc">$</span>year_mth <span class="ot">&lt;-</span> <span class="fu">format</span>(<span class="fu">as.Date</span>(fin_data<span class="sc">$</span>timestamp), <span class="st">"%Y-%m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>create a new table by converting financial journal to wide format (participantId as rows and categories as columns)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert financial journal to wide format</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>wide_fin <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(fin_data, <span class="at">id_cols =</span> participantId, <span class="at">names_from =</span> category, <span class="at">values_from =</span> amount, <span class="at">values_fn =</span> sum)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fill in NA with 0s (i.e. no transaction) in the resultant table</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>wide_fin[<span class="fu">is.na</span>(wide_fin)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>join the wide format financial journal table with the participant table by participantId</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(part_data, wide_fin, <span class="at">by =</span> <span class="st">'participantId'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>calculate total income, total expenses and final balance (sum of all categories) for each participant</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>merged_df<span class="sc">$</span>expenses <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(merged_df[, <span class="fu">c</span>(<span class="st">"Education"</span>, <span class="st">"Food"</span>, <span class="st">"Recreation"</span>,<span class="st">"Shelter"</span>)])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>merged_df<span class="sc">$</span>income <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(merged_df[, <span class="fu">c</span>(<span class="st">"RentAdjustment"</span>,<span class="st">"Wage"</span>)])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>merged_df<span class="sc">$</span>balance <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(merged_df[, <span class="fu">c</span>(<span class="st">"Education"</span>, <span class="st">"Food"</span>, <span class="st">"Recreation"</span>,<span class="st">"RentAdjustment"</span>,<span class="st">"Shelter"</span>,<span class="st">"Wage"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Normality check and qq plot</p></li>
+</ol>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Joviality qq plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">The code chunk</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_df, <span class="fu">aes</span>(<span class="at">sample=</span>joviality))<span class="sc">+</span><span class="fu">stat_qq</span>()<span class="sc">+</span><span class="fu">stat_qq_line</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sw_t <span class="ot">&lt;-</span> merged_df<span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(joviality)<span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Financial summary qq plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">The code chunk</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_df, <span class="fu">aes</span>(<span class="at">sample=</span>balance))<span class="sc">+</span><span class="fu">stat_qq</span>()<span class="sc">+</span><span class="fu">stat_qq_line</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>sw_t <span class="ot">&lt;-</span> merged_df<span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(balance)<span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>We can see that the points from both joviality and financial balance deviate significantly from the straight diagonal line, this is a clear indication that they are not normally distributed.</p>
+<ol start="7" type="1">
+<li><p>Outlier removal and histogram</p>
+<p>This step is to remove “expenses” and “income” outliers. (to retain more data, I adjusted the 75%(Q3)/25%(Q1) quantile to 90%/10% quantile in the outlier formula respectively.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating the upper limit and Interquartile range for "expenses" and "income"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>IQR_income <span class="ot">=</span> <span class="fu">IQR</span>(merged_df<span class="sc">$</span>income)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>IQR_exp <span class="ot">=</span> <span class="fu">IQR</span>(merged_df<span class="sc">$</span>expenses)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>income_upper <span class="ot">=</span> <span class="fu">quantile</span>(merged_df<span class="sc">$</span>income,<span class="at">probs =</span> <span class="fl">0.9</span>)<span class="sc">+</span><span class="fl">1.5</span><span class="sc">*</span>IQR_income</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>exp_lower <span class="ot">=</span> <span class="fu">quantile</span>(merged_df<span class="sc">$</span>expenses,<span class="at">probs =</span> <span class="fl">0.1</span>)<span class="sc">-</span><span class="fl">1.5</span><span class="sc">*</span>IQR_exp</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering out the outliers (too high income or expenses)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>merged <span class="ot">&lt;-</span>  merged_df <span class="sc">%&gt;%</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>           <span class="fu">filter</span> ((income <span class="sc">&lt;=</span> income_upper) <span class="sc">&amp;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>          (expenses <span class="sc">&gt;=</span> exp_lower))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#income histogram after outlier removal</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mean_income <span class="ot">=</span> <span class="fu">mean</span>(merged<span class="sc">$</span>income)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>std_income <span class="ot">=</span> <span class="fu">sd</span>(merged<span class="sc">$</span>income)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>income_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged, <span class="fu">aes</span>(income))<span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..), <span class="at">fill =</span> <span class="st">'#133337'</span>, <span class="at">color =</span> <span class="st">'#eeeeee'</span>)<span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> mean_income, <span class="at">sd =</span> std_income), <span class="at">col=</span><span class="st">"#66cccc"</span>, <span class="at">size =</span> .<span class="dv">7</span>)<span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">200000</span>)<span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Income histogram after outlier removal'</span>, </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"total income"</span>)<span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>),</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'white'</span>),</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.25</span>, <span class="at">linetype =</span> <span class="st">'dashed'</span>, <span class="at">colour =</span> <span class="st">'#bebebe'</span>),</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>,<span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#expenses histogram after outlier removal</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>mean_exp <span class="ot">=</span> <span class="fu">mean</span>(merged<span class="sc">$</span>expenses)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>std_exp <span class="ot">=</span> <span class="fu">sd</span>(merged<span class="sc">$</span>expenses)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>expenses_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged, <span class="fu">aes</span>(expenses))<span class="sc">+</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..), <span class="at">fill =</span> <span class="st">'#133337'</span>, <span class="at">color =</span> <span class="st">'#eeeeee'</span>)<span class="sc">+</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> mean_exp, <span class="at">sd =</span> std_exp), <span class="at">col=</span><span class="st">"#66cccc"</span>, <span class="at">size =</span> .<span class="dv">7</span>)<span class="sc">+</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">35000</span>, <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Expenses histogram after outlier removal'</span>, </span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"total expenses"</span>)<span class="sc">+</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>),</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'white'</span>),</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.25</span>, <span class="at">linetype =</span> <span class="st">'dashed'</span>, <span class="at">colour =</span> <span class="st">'#bebebe'</span>),</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>,<span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>income_hist <span class="sc">+</span> expenses_hist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="data-visualisation" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualisation"><strong>Data Visualisation</strong></h2>
+<section id="total-income-expenses-and-balance-vs-household-size" class="level3">
+<h3 class="anchored" data-anchor-id="total-income-expenses-and-balance-vs-household-size">1. Total income, expenses and balance VS household size</h3>
+<p>From this line plot, we observe:</p>
+<ol type="1">
+<li>Householdsize 3 has the highest total income (wage+rental adjustment).</li>
+<li>Total expenses (absolute value) increases as household size increases, which is expected.</li>
+<li>Householdsize 1 has the most balance (total income - expenses).</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add a column to store absolute value of total expense</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>merged<span class="sc">$</span>expenses_abs <span class="ot">&lt;-</span> <span class="fu">abs</span>(merged<span class="sc">$</span>expenses)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#filter income, expenses and balance columns and change to long format</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>merged_long <span class="ot">&lt;-</span> merged <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(householdSize,income,expenses_abs,balance) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(householdSize)<span class="sc">%&gt;%</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarise</span>(<span class="at">avg_income =</span> <span class="fu">mean</span>(income),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_expenses =</span> <span class="fu">mean</span>(expenses_abs),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_balance =</span> <span class="fu">mean</span>(balance)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"avg_income"</span>, <span class="st">"avg_expenses"</span>, <span class="st">"avg_balance"</span>), <span class="at">names_to =</span> <span class="st">"type"</span>, <span class="at">values_to =</span> <span class="st">"amount"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#line plot </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>line_p1 <span class="ot">&lt;-</span>merged_long <span class="sc">%&gt;%</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> householdSize, <span class="at">y =</span> amount, <span class="at">colour =</span> type))<span class="sc">+</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total income, expenses and balance VS household size"</span>, <span class="at">x =</span> <span class="st">'household size'</span>, <span class="at">y =</span> <span class="st">'Total income, expenses and balance'</span>) <span class="sc">+</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>),</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.25</span>, <span class="at">color =</span> <span class="st">"#bebebe"</span>,<span class="at">linetype =</span> <span class="st">'dashed'</span>),</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'white'</span>),</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.25</span>, <span class="at">linetype =</span> <span class="st">'dashed'</span>, <span class="at">colour =</span> <span class="st">'#bebebe'</span>),</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span> ,<span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>line_p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="expenses-by-age-group" class="level3">
+<h3 class="anchored" data-anchor-id="expenses-by-age-group">2. Expenses by age group</h3>
+<p>An interactive box plot is used to better visualize the expenses of different age groups. A new “age_groups” column was added with 10 years’ interval.</p>
+<p>From the box plot, observed that:</p>
+<ol type="1">
+<li>Age group “&lt;20” has the highest average expense across all categories.</li>
+<li>Age group “21-30” has the lowest average expense across all categories.</li>
+<li>The participant with the maximum expense (32.6k) is from 31-40 group.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create age_groups with labels</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>merged<span class="sc">$</span>age_groups <span class="ot">&lt;-</span> <span class="fu">cut</span>(merged<span class="sc">$</span>age, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>), </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"&lt;20"</span>,<span class="st">"21-30"</span>, <span class="st">"31-40"</span>, <span class="st">"41-50"</span>, <span class="st">"51-60"</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#income box plot</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">"Garamond"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">19</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">"Garamond"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">15</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>box <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> merged,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="sc">~</span>expenses_abs,</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"box"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="sc">~</span>age_groups,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">showlegend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">boxmean =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">title=</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Box plot of total expenses in thousands by age group"</span>,<span class="at">font =</span> t1),</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span><span class="st">'Age Group'</span>, <span class="at">font =</span> t1)),</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>         <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span><span class="st">'Total expenses in thousands'</span>, <span class="at">font =</span> t1)))</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>box</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-30625a6ba64deed89ce6" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-30625a6ba64deed89ce6">{"x":{"visdat":{"4a3074f85447":["function () ","plotlyVisDat"]},"cur_data":"4a3074f85447","attrs":{"4a3074f85447":{"y":{},"showlegend":false,"boxmean":true,"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":{"text":"Box plot of total expenses in thousands by age group","font":{"family":"Garamond","size":15,"face":"bold"}},"xaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Age Group","font":{"family":"Garamond","size":15,"face":"bold"}}},"yaxis":{"domain":[0,1],"automargin":true,"title":{"text":"Total expenses in thousands","font":{"family":"Garamond","size":15,"face":"bold"}}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(102,194,165,0.5)","y":[15674.733617326,14633.110614506,28866.380713519,19684.339272699,11923.627999413,16505.091791564,9800.461458162,17531.445925609,7425.368781696,19469.374054654,15434.39932582,21505.422191505,30262.23047205,18033.815444396,17282.948396047,18591.302645991,20251.481929516,13899.991286977,18140.194938264,16302.56241744,25491.466666909,18320.317523255,19959.903512767,53.073775547,21209.786842659,15256.55372214,14260.057469635,10361.618831412,16911.866373886,15480.834677859,10772.505385592,8337.241509035,12354.475775564,16659.880697936,24229.50878174,17154.630690367,15462.513139093,19544.223740354,21897.98224044,18146.298862606,21111.53252966,22395.326719635,138.68432914,25482.437022061,52.557701917,62.163322023,25275.416840544,18901.538105249,16369.851679356,9783.465037054,11266.932638849,14514.756251288,15027.356940079,14657.011820639,18561.226329048,18316.735075565,22123.598759112,26769.320658252,141.030037638,20813.101708103,21237.348487552,197.861249307,19862.918641781,28583.102503742,19303.720039554,15006.943146466,14389.520586147,14426.866417985,14519.868455258,13807.369282643,10287.53436126],"showlegend":false,"boxmean":true,"type":"box","name":"<20","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(252,141,98,0.5)","y":[17513.768519744,15886.543017073,12036.535150534,16666.077926951,16656.437127443,17446.739941478,18702.512543575,28004.945760998,19258.410441318,21771.814407576,23073.423163171,18273.213496513,15282.289956696,21482.775579006,64.700613408,19961.140015354,20223.198887958,21146.383447313,24410.969987493,58.599602503,19483.306176929,17424.658762624,28524.433035334,24466.071736005,19917.04461923,14327.820072701,12287.080015203,18660.592546071,13480.701064913,9007.561764767,15644.480259131,15250.811090373,18436.319931174,9456.556788441,6922.634012012,13014.833637049,18940.414724684,18823.645240085,18084.131615905,8143.766149673,7355.826367886,23949.868248599,9999.212044431,8877.480930535,14879.531398027,8508.632410466,14940.731184901,16947.991665704,17843.228827858,13890.894531676,16691.819966369,255.651989193,20501.693518102,19017.45189063,19576.097406091,16556.304118003,234.129187007,14419.994517905,18675.03701098,22488.899920644,21630.556120385,15808.746717699,18548.918506603,18760.347558032,18506.383054224,17304.053816677,20813.603158861,20501.348557899,15952.359836535,15544.817145382,13948.242219217,26655.630850172,16179.345129092,74.546927686,24586.018584057,16742.055268471,12782.400828647,42.5885856,23013.091736344,21059.934239765,19812.300736425,73.507406594,20030.240752113,18177.705764572,19028.890306346,15372.915053129,14128.37840064,15994.316025958,15405.400585261,20929.754043055,13592.27873455,14792.64333653,9467.346302807,15204.245317593,17441.8857947,16874.091964753,12634.754970258,10394.509909322,14221.147414966,14698.537964311,13394.03907425,12406.493552412,10838.46915773,9968.694812583,16422.604846595,21359.597621395,13491.40367793,19345.474691891,19482.482009636,237.245086674,18104.613343358,20873.978539103,147.541249702,19142.976372129,21696.007767597,18857.00695598,114.094682272,19686.485634644,21509.413532742,23312.556960504,19980.621967327,144.434189286,21910.164334513,23173.638145638,72.265770632,62.956902047,79.401901585,18378.903145974,18378.689846554,19111.337842117,18409.065200755,20266.103498562,58.79621931,18085.571919118,24035.089542953,20533.407458185,20506.700752603,20025.710424382,68.145998581,17539.311391221,17638.813343879,24457.484359047,46.876297188,20248.80014308,16787.998820698,63.14403628,21424.438092391,16844.04323116,56.606804128,12554.910000707,11484.816519309,13285.473408265,16743.437179152,24817.29387139,19341.910543728,10409.264734184,25174.842339411,15688.800716985,14216.010610236,14531.435320666,7918.086462236,7045.363856756,7812.305982713,17485.725728433,10592.48441738,7446.929950407,13782.32083115,199.309548191,143.153786242,220.904501954,19783.826385705,30726.915205714,136.978439814,17775.4453266,213.978841555,21076.7604377,14008.35238699,23524.683908253,143.412387341,16650.285863459,24910.669188024,19468.09952623,23235.984440049,146.649444642,17257.895778716,150.074708383,20614.150302163,183.998105059,16074.285094736,16497.891233671,67.499070399,64.603535565,73.834272188,22083.114182761,19323.084531441,81.044269932,20718.985446591,69.358615847,74.286177338,28887.137938063,20739.703855585,52.142317714,51.045210727,17655.399671638,22851.356885976,20119.339269158,26991.493003793,19143.185520315,15443.916356592,17048.945865853,19511.237475445,19482.922777846,10310.976786408,21230.177024098,13286.490468362,18420.875416849,8542.974328616,7305.070461061,7251.002033681,14847.614674794,14662.072678856,11527.916821069,12763.840561135,18704.519594921],"showlegend":false,"boxmean":true,"type":"box","name":"21-30","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(141,160,203,0.5)","y":[15234.965384688,20133.01675603,18153.299888183,11070.264735848,21602.145421873,14324.608013748,17285.416324611,19974.781332738,17616.18253361,22261.167620399,15774.166631811,18507.63968378,19189.391851198,16651.694299367,25243.615348088,15055.099518914,15446.664377473,13496.433574507,14971.075358196,21384.069411108,14248.384839233,10363.164748114,17735.659795315,8459.842114258,11463.430177693,14593.877169362,7943.948501785,13838.807662688,15041.070327658,8393.843483844,11155.874146475,21907.114206096,7893.575360169,7329.350911208,7356.914776779,19625.201660107,8890.864269163,14778.322221211,19033.449831405,16201.997029779,23863.443969308,13058.749353706,16184.290366207,26216.197455176,16734.479891527,23567.498826705,14994.086184649,256.752731571,25601.435391496,18729.787844143,17928.596952164,20194.805041226,19109.346232687,21124.321373473,26441.486549627,24786.259026973,16440.975230686,16962.932727635,14887.58352309,32554.69008226,13822.759536753,16627.521936525,17259.005691872,19368.25075768,19066.774024604,18302.823403292,25706.976129505,64.510046791,18919.670856887,24944.405158386,19612.936245307,17615.495477293,15016.922542241,25344.01625501,20091.36822421,24267.143833233,17030.915105048,13113.166978424,16418.8847305,74.927829539,55.13869683,19516.371006773,23975.996417707,18363.173793093,21962.431178041,23505.571275889,22307.156299839,22193.526204379,13277.205918042,13708.973936483,18336.718261098,8032.142823419,18332.435001339,22976.267926839,64.159755894,11998.581903015,12150.506930034,13962.32770007,16111.764116192,16600.475539763,16509.891801632,16264.689275335,14106.921932782,7546.818819244,14798.780189185,11802.688803255,12752.621345731,9804.694196809,17251.480157549,17612.29966542,19354.774447939,20768.685870033,24294.86073776,18987.758002755,18623.745269246,23964.291228173,17685.901707268,17965.928270838,123.182566801,17329.973696406,21725.851989877,29765.4709133,18605.645904307,20060.476455124,137.961288243,23722.513192248,21910.941577856,82.489460146,16017.042769962,15198.007655785,17605.690508399,18013.104631409,57.670926858,20011.611380882,57.812140696,18158.686250743,22725.491716188,81.904536858,25970.97827424,20837.797286215,60.289891836,19092.119946711,18487.731852173,20933.900091167,19156.226873342,18257.863068274,16557.218655664,18027.566758545,18327.738131224,22707.41440948,18676.613229517,28928.136375672,31.998246971,53.091522692,18346.595592006,9634.2461469,18665.378498993,15271.788036262,13115.46323559,15697.958048357,13733.221436896,6874.840389012,7333.508962021,15658.534054766,13411.130038999,18645.683300107,14079.023766843,14684.427345863,21240.4972972,7289.685232855,16479.82182049,212.369141002,21172.209859932,23599.245941283,24318.757734805,124.439045269,22198.859890771,17702.360198638,120.508678101,20042.768897068,19955.856498507,137.897782466,141.676591041,136.313434709,22033.203944847,22294.326938399,196.653729527,26476.698437527,16249.471416233,206.347389467,151.173737648,18994.742245089,68.878275001,15308.146324713,20800.952652807,62.128248689,44.748526296,71.359326185,17028.720903159,18868.231689567,44.748526296,23932.08612583,46.355871176,34.818357768,20224.086976315,21223.814585185,20478.482986479,45.301860786,56.937049519,24671.798421554,23831.365373062,22063.862604261,19883.676472992,48.420728699,13383.660374174,20005.873111862,14941.835208057,10866.650759064,14850.399359292,11702.937672902,17961.609907711,19578.994174233,14216.047103746,18577.610132199,12700.143782967,18138.803843459,19426.879702088,20714.042067945],"showlegend":false,"boxmean":true,"type":"box","name":"31-40","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(231,138,195,0.5)","y":[15287.452305342,9328.999372322,15302.849017336,12239.56327985,15300.00985868,18469.096013497,19116.237446451,15218.337205642,20155.900213119,23420.444942508,26058.984948666,20139.997660042,20206.802487822,15637.144199208,16627.889809196,18114.395774365,41.04097439,26402.957975375,11990.718954176,16529.817390507,20554.008098833,8755.384798106,12058.790784138,16813.296275759,8191.359112348,14340.956919373,14016.247547089,17253.514473094,7185.363187574,6506.5816476,15253.692668761,9820.421782566,13435.251252907,9154.074070743,9058.724848246,20877.357007686,15909.150909467,18418.45455106,12721.997100577,16173.413664589,27580.057492517,21849.457994305,21632.359873782,18068.076703401,250.481903051,18374.758930578,20213.074589721,258.146391509,26335.655285526,234.326154695,15812.327023802,15252.43130287,16309.547410728,20197.410292126,14037.43273945,16626.611500406,16817.328668223,18494.433961622,15494.452338104,15146.485163977,19350.141700239,23510.238767514,16476.611648743,46.528926439,27263.372436418,14263.069231284,75.648816194,19113.627830196,28155.270079611,16626.332756336,23825.654483698,19190.952457236,17172.02165495,22563.038237532,18928.086309646,13804.44937639,8352.876114551,20958.591090731,14727.132457082,21838.024755574,17829.678438237,15378.673271606,12211.194056958,12614.700067695,17649.027396159,14307.387466547,7449.338407303,19093.307762647,16311.960381167,18413.539267113,14968.07786487,11524.019087327,17506.383914678,9477.933490659,16280.552444407,18984.002724389,22294.278304866,242.703175937,148.13489637,18762.435601193,14040.486630762,20347.409157506,20101.998587277,20329.178601442,17083.484017361,24223.414368421,135.956331152,22428.966179102,112.656139754,21120.007270401,18426.626098854,17432.990700972,26142.59057794,132.19370517,24058.267253139,22383.944169229,24912.819970027,20679.652747344,20024.174115333,13349.954878815,22865.698762726,21272.855731857,19849.846553108,23931.67954423,54.765370675,63.993511107,18802.29005207,18127.50105645,17678.258887409,19840.802921833,18652.127624496,17665.671724678,20106.27336084,17174.0461839,63.234520132,24927.845937783,16220.617157438,64.556669881,14964.013593864,12484.313205532,17592.704680207,14233.091919678,15428.474475313,17619.208701496,15360.336658397,13965.576803078,14318.147072749,15778.27732661,20710.136559652,15620.071813988,6345.908104817,16014.608573502,19268.85492521,18169.964417915,12030.219527963,20106.703027018,17742.714292419,13297.329290269,18209.321641545,16328.364277747,13904.402208829,12627.263159314,12780.255829188,18302.143982625,14202.915663198,20203.491774214,16759.1784365,10034.549508436,12554.983168303,10104.131207627,20352.693686345,20472.74248778,21004.093425977,19794.143075999,183.255257573,123.331037204,21526.609153004,142.543888292,16751.174974965,19524.872618019,19144.914443412,19718.118055096,16007.529130971,21424.649998642,14758.965469294,45.772782306,23484.781249887,18831.431462766,21939.951947932,21221.834774047,50.888113294,21522.393892972,18864.076238631,68.095389859,27356.333991242,16659.753807578,18337.030154943,17619.482189214,52.616133507,37.377670547,22118.052706436,21389.457598676,50.607250063,20556.064942819,51.402724003,18731.722199692,21606.684320508,42.214373369,18873.387596238,17267.021115446,53.113495632,18364.475401809,18234.69690324,7197.993418002,15699.062162874,16794.323431187,13193.121939464,18255.668600925,18819.469643434,14233.62285911,17689.147411381,14149.447200756,18463.535079923,19128.538546594,15897.067958672,11858.650174084,16825.094814959,15089.26139472,7067.557257138,12239.197248203,13717.441071017,14036.864721139,10646.283813139,13448.719991724,13789.361580718,18941.393677555,13708.660536073,14405.467794379],"showlegend":false,"boxmean":true,"type":"box","name":"41-50","marker":{"color":"rgba(231,138,195,1)","line":{"color":"rgba(231,138,195,1)"}},"line":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(166,216,84,0.5)","y":[19170.59436388,12697.863266532,15543.293257129,22432.253766985,20218.343341861,24515.620286073,16619.267862553,18731.3217541,55.754300657,22078.729329612,12728.988364736,23004.515536726,19961.273538003,14707.304746713,10850.626628379,7412.63811943,7307.674421261,7837.876229657,8266.488328337,15367.568618397,12622.239068043,19548.472441726,17441.810244245,9105.906271004,20365.320424237,13607.602815873,9155.083967126,20277.532633925,9654.245873283,18479.352381539,14672.359211644,11772.910440247,8789.093847374,14185.062511923,12565.41732154,17218.913840177,21306.615501502,18875.644709492,242.410385327,257.003472563,15914.455432488,19206.063131846,18804.794911761,14966.246239787,15072.408626648,28351.310953385,19905.327093261,21872.543027738,12857.971673777,16689.171579147,13621.535283887,18465.486043629,19100.553616495,19233.612537715,20568.185137961,13486.394682624,15912.841489939,12908.698821783,19464.553096792,16368.508185818,21456.550547261,42.95615976,16705.420074354,15412.824178497,15425.212590767,17087.44819354,21947.797161185,25636.028184769,20289.065490349,18766.624606545,18754.961522743,20111.126212982,18641.651466964,25707.650756318,19010.116661787,25846.155706236,20222.500687851,15327.561009093,21198.317860102,17888.648169789,8502.617868838,8440.906637306,11305.307733808,20330.197655193,9563.698137144,9713.276181881,19479.345990437,16784.214908949,18724.802102719,15036.187711495,14719.761177964,19413.424697795,11714.515724653,17680.240141308,13194.314230505,14394.051531966,144.420650876,17707.407914947,14026.222090151,18562.485018036,18371.740025275,21106.625252288,22004.865522874,19806.400461038,19748.821000962,22721.102575699,15138.240596789,22765.647326278,19745.423281717,26188.327615836,98.309965092,21298.282708893,138.77791696,21818.619719628,22563.779842816,18627.90499624,15258.130727877,58.002375643,69.381436258,20081.444824342,19087.341981984,20159.761719443,16606.063663745,26927.070897284,19169.424578847,16439.097139993,51.524363435,18723.625193789,62.829864399,19331.538681253,64.641985665,73.116744022,29478.041720625,17160.532778455,18093.704733447,16348.164062199,16954.850490838,16823.107624182,14814.290528935,14072.11045958,13682.06808599,6708.997925801,12630.295371253,22278.349571097,7366.279810545,15879.419437192,20974.204873467,7466.453020698,15484.007540771,16457.717688888,10724.544672103,12011.185047404,12210.881929851,15007.62345144,7271.205553762,23389.314044516,16693.895357653,129.729695371,16981.240607456,21216.70759746,17895.963944385,191.228842307,20581.018673141,147.237971213,12817.835196021,127.098846323,20491.40565198,16421.995256177,192.171042201,21369.286048173,20370.370590591,11726.510114766,17067.46706702,214.677291227,20096.031607674,19224.057291193,22272.614662782,20039.821707068,21075.61172248,61.821437756,23950.455762024,47.495590147,18181.578763822,71.262093418,27226.854108953,18765.864212567,19339.883236961,20372.772561092,18962.700902727,27506.159969336,50.028073579,19951.566862912,23321.436353975,67.415003543,50.028073579,15396.376727237,20299.99376819,20937.708574548,66.518415722,18075.595071919,16342.252179282,42.279129672,45.899789061,22107.090042867,17406.137648032,48.288553859,7345.162250754,7277.991268168,13323.406163871,17436.850460003,10305.817693636,15603.96597301,18557.799013295,25286.663420633,13684.43222815,14234.798656696,13692.362968609,17412.300057344,15819.164677762,13984.428140696,14638.856759536,16658.291895121,15364.978552905,15565.598079293,14774.339703859],"showlegend":false,"boxmean":true,"type":"box","name":"51-60","marker":{"color":"rgba(166,216,84,1)","line":{"color":"rgba(166,216,84,1)"}},"line":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="proportion-of-expenses-by-age-group" class="level3">
+<h3 class="anchored" data-anchor-id="proportion-of-expenses-by-age-group">3. Proportion of expenses by age group</h3>
+<p>To further understand the spending behaviors of each age group, a stacked bar chart is used to visualize the proportion of the average expenses (i.e.&nbsp;education, food, recreation and shelter).</p>
+<p>However from the stacked bar chart, there is not much spending behavior difference observed across the five age groups. The biggest proportion is always shelter, followed by recreation, food, and lastly education. The proportion for recreation and food is comparable, while education only contributes a small portion to total expense.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate avg of each expense category by age group, then change the table to long format</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>merged_aggregated <span class="ot">&lt;-</span> merged <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(age_groups) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avg_education =</span> <span class="fu">mean</span>(Education),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_food =</span> <span class="fu">mean</span>(Food),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_recreation =</span> <span class="fu">mean</span>(Recreation),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_shelter =</span> <span class="fu">mean</span>(Shelter)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(avg_education, avg_food, avg_recreation, avg_shelter), abs))<span class="sc">%&gt;%</span> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(avg_education, avg_food, avg_recreation, avg_shelter), <span class="at">names_to =</span> <span class="st">"type"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the stacked bar chart</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_aggregated, </span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(age_groups, value, <span class="at">fill =</span> type)) <span class="sc">+</span> </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#6666FF"</span>, <span class="st">"#99FFCC"</span>, <span class="st">"#FF99CC"</span>,<span class="st">"#FFCC99"</span>))<span class="sc">+</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proportion of Flat types by Planning area in Singapore"</span>, <span class="at">x =</span> <span class="st">"Planning Area"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Flat Type"</span>) <span class="sc">+</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Garamond"</span>),</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.4</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">face =</span> <span class="st">'bold'</span>),</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>),</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>),</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) </span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-726114151c0af631be6b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-726114151c0af631be6b">{"x":{"data":[{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9],"base":[15953.0272770873,14466.2610478846,15099.9193662674,15162.4814745051,14844.9514824601],"x":[1,2,3,4,5],"y":[194.439204220564,141.773082257723,161.022077675352,132.923297571009,141.437554879154],"text":["age_groups: <20<br />value:  194.4392<br />type: avg_education","age_groups: 21-30<br />value:  141.7731<br />type: avg_education","age_groups: 31-40<br />value:  161.0221<br />type: avg_education","age_groups: 41-50<br />value:  132.9233<br />type: avg_education","age_groups: 51-60<br />value:  141.4376<br />type: avg_education"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(102,102,255,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"avg_education","legendgroup":"avg_education","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9],"base":[11916.7610355672,10934.6328289181,11489.7184678602,11390.7054438446,11226.0320370684],"x":[1,2,3,4,5],"y":[4036.26624152004,3531.62821896652,3610.20089840719,3771.77603066051,3618.91944539175],"text":["age_groups: <20<br />value: 4036.2662<br />type: avg_food","age_groups: 21-30<br />value: 3531.6282<br />type: avg_food","age_groups: 31-40<br />value: 3610.2009<br />type: avg_food","age_groups: 41-50<br />value: 3771.7760<br />type: avg_food","age_groups: 51-60<br />value: 3618.9194<br />type: avg_food"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(153,255,204,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"avg_food","legendgroup":"avg_food","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9],"base":[7808.75273754366,6945.34577977946,7347.80407520088,7178.27509835252,7215.66562908978],"x":[1,2,3,4,5],"y":[4108.00829802358,3989.28704913863,4141.91439265935,4212.43034549205,4010.36640797861],"text":["age_groups: <20<br />value: 4108.0083<br />type: avg_recreation","age_groups: 21-30<br />value: 3989.2870<br />type: avg_recreation","age_groups: 31-40<br />value: 4141.9144<br />type: avg_recreation","age_groups: 41-50<br />value: 4212.4303<br />type: avg_recreation","age_groups: 51-60<br />value: 4010.3664<br />type: avg_recreation"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,153,204,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"avg_recreation","legendgroup":"avg_recreation","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9],"base":[0,0,0,0,0],"x":[1,2,3,4,5],"y":[7808.75273754366,6945.34577977946,7347.80407520088,7178.27509835252,7215.66562908978],"text":["age_groups: <20<br />value: 7808.7527<br />type: avg_shelter","age_groups: 21-30<br />value: 6945.3458<br />type: avg_shelter","age_groups: 31-40<br />value: 7347.8041<br />type: avg_shelter","age_groups: 41-50<br />value: 7178.2751<br />type: avg_shelter","age_groups: 51-60<br />value: 7215.6656<br />type: avg_shelter"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,204,153,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"avg_shelter","legendgroup":"avg_shelter","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":73.1191365711914,"r":26.5670402656704,"b":83.3540888335409,"l":72.7272727272727},"font":{"color":"rgba(0,0,0,1)","family":"Garamond","size":14.6118721461187},"title":{"text":"<b> Proportion of Flat types by Planning area in Singapore <\/b>","font":{"color":"rgba(0,0,0,1)","family":"Garamond","size":19.9252801992528},"x":0.4,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,5.6],"tickmode":"array","ticktext":["<20","21-30","31-40","41-50","51-60"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["<20","21-30","31-40","41-50","51-60"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Garamond","size":10.6268161062682},"tickangle":-90,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"<b> Planning Area <\/b>","font":{"color":"rgba(0,0,0,1)","family":"Garamond","size":15.9402241594022}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-807.373324065392,16954.8398053732],"tickmode":"array","ticktext":["0","5000","10000","15000"],"tickvals":[0,5000,10000,15000],"categoryorder":"array","categoryarray":["0","5000","10000","15000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Garamond","size":10.6268161062682},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"<b> Count <\/b>","font":{"color":"rgba(0,0,0,1)","family":"Garamond","size":15.9402241594022}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"Garamond","size":11.689497716895},"title":{"text":"Flat Type","font":{"color":"rgba(0,0,0,1)","family":"Garamond","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"4a301f7d6f61":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"4a301f7d6f61","visdat":{"4a301f7d6f61":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="expenses-by-education-level-and-interest-group" class="level3">
+<h3 class="anchored" data-anchor-id="expenses-by-education-level-and-interest-group">4. Expenses by education Level and interest group</h3>
+<p>After visualizing expenses VS age group, I am also interested in the expense patterns with education level and interest group.</p>
+<p>In this section, a treemap is used for a quick overall glimpse of expenses across different education levels and interest groups. Graduate and bachelors are having higher expenses than college or lower education level. Interest group B/F has relatively high proportion across all education levels.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate average expenses for different education level and interest groups</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>merged_aggr_tree <span class="ot">&lt;-</span> merged <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(educationLevel,interestGroup) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avg_expenses =</span> <span class="fu">mean</span>(expenses_abs)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#plot treemap with size and color both representing expenses</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>treemap_area <span class="ot">&lt;-</span> <span class="fu">treemap</span> (merged_aggr_tree,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">index=</span> <span class="fu">c</span>(<span class="st">"educationLevel"</span>,<span class="st">"interestGroup"</span>),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">vSize=</span> <span class="st">"avg_expenses"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">vColor =</span> <span class="st">"avg_expenses"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">type=</span><span class="st">"value"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"RdYlGn"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">border.col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"white"</span>),</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">title=</span><span class="st">"expenses by educationLevel and interest group"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">title.legend =</span> <span class="st">"Average Expenses"</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="wage-vs-education-level-by-using-hypothetical-outcome-plots" class="level3">
+<h3 class="anchored" data-anchor-id="wage-vs-education-level-by-using-hypothetical-outcome-plots">5. Wage VS education level by using Hypothetical Outcome Plots</h3>
+<p>Hypothetical Outcome Plot (HOP) are used to visualize the uncertainty of wage for different education levels.</p>
+<p>From the plot below, we can see that most of the time, bachelors and graduates can earn more than low or high school/college education level.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Wage VS education level HOP</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>hop <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> merged, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   (<span class="fu">aes</span>(<span class="at">x =</span> educationLevel, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> Wage))) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="fl">0.3</span>, </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.05</span>), </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">0.4</span>, </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#0072B2"</span>, </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hpline</span>(<span class="at">data =</span> <span class="fu">sampler</span>(<span class="dv">25</span>, </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">group =</span> educationLevel), </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">height =</span> <span class="fl">0.6</span>, </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"#D55E00"</span>) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(.draw, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">'hop_animation.gif'</span>,hop)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>hop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-18-1.gif" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="correlation-with-joviality" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-with-joviality">6. Correlation with joviality</h3>
+<p>Scatter plot is used to investigate which category among the 6 has good correlation with joviality.</p>
+<p>There is no good correlation between joviality and education, food or shelter. While recreation shows positive correlation with joviality, the more the participants spend on recreation, the happier they are. Surprisingly wage and joviality are in negative correlation.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define y as joviality</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y_var <span class="ot">&lt;-</span> merged<span class="sc">$</span>joviality</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define x as the 6 categories (absolute value)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>x_vars <span class="ot">&lt;-</span> merged[, <span class="fu">c</span>(<span class="st">"Education"</span>, <span class="st">"Food"</span>, <span class="st">"Recreation"</span>,<span class="st">"RentAdjustment"</span>,<span class="st">"Shelter"</span>,<span class="st">"Wage"</span>)] <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"Education"</span>, <span class="st">"Food"</span>, <span class="st">"Recreation"</span>,<span class="st">"RentAdjustment"</span>,<span class="st">"Shelter"</span>,<span class="st">"Wage"</span>), abs))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the data to long format</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="fu">cbind.data.frame</span>(x_vars, y_var), <span class="at">id.vars =</span> <span class="st">"y_var"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>cor <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> y_var)) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable, <span class="at">scales =</span> <span class="st">"free_x"</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"joviality"</span>) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"joviality correlation scatter plot"</span>) <span class="sc">+</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="st">"cm"</span>))</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>cor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="recreation-expenses-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="recreation-expenses-over-time">7. Recreation expenses over time</h3>
+<p>Since recreation shows a relatively good correlation with joviality, I did below animation to know about how recreation expenses changing over time.</p>
+<p>The distribution of recreation expenses are more or less constant from early 2022 to early 2023, and it is slowly shifting right which means people tend to spend more on recreation over time.</p>
+<div class="cell">
+<details>
+<summary>Show Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter recreation data and group by category </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fin_aggr <span class="ot">&lt;-</span> fin_data <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_mth =</span> <span class="fu">as.Date</span>(<span class="fu">paste</span>(year_mth,<span class="st">"-01"</span>, <span class="at">sep=</span><span class="st">""</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">amount =</span> <span class="fu">abs</span>(amount))<span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Recreation"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(category)<span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">ungroup</span>()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#density ridge plot animation over time</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> fin_aggr, <span class="fu">aes</span>(<span class="at">x =</span> amount, <span class="at">y =</span> category, <span class="at">fill =</span> <span class="fu">after_stat</span>(density))) <span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges_gradient</span>(<span class="at">scale =</span> <span class="dv">5</span>, <span class="at">rel_min_height =</span> <span class="fl">0.01</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">width =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">'Recreation expenses {frame_time} '</span>) <span class="sc">+</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year_mth) <span class="sc">+</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>,</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Garamond"</span>),</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">angle =</span> <span class="dv">360</span>),</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">name =</span> <span class="st">"amount"</span>, <span class="at">option =</span> <span class="st">"D"</span>) <span class="sc">+</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">'linear'</span>)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>gg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex1_files/figure-html/unnamed-chunk-20-1.gif" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
