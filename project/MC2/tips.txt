@@ -1,0 +1,4 @@
+1.create a graph for each bundle dataset, check if got any pattern (viznetwork to create interactive graph)
+2.communicated link view among a few graphs.
+3. remove NA links (2k left?),remove isolated pair
+select top 50 srcs/targets with high frequency, then do the plot
