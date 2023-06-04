@@ -1,0 +1,13 @@
+name: network_shiny
+title: network_shiny
+username:
+account: christinadeng
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9196978
+bundleId: 7270263
+url: https://christinadeng.shinyapps.io/network_shiny/
+when: 1685169087.04326
+lastSyncTime: 1685169087.04327
+asMultiple: FALSE
+asStatic: FALSE
